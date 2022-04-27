@@ -21,8 +21,11 @@ p{
 .header{
     height: 100px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center; 
+}
+.goods-search{
+    height: 30px;
 }
 .cart-button{
     font-size: 26px;
@@ -32,6 +35,20 @@ p{
     color:#fff;
     width: 180px;
     height: 60px;
+}
+.cart-button2{
+    font-size: 26px;
+    font-weight: 700;
+    border: 0;
+    background: #0099FF;
+    color:#fff;
+    width: 180px;
+    height: 35px;
+}
+.search{
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
 }
 .goods-list{
     display: flex;
