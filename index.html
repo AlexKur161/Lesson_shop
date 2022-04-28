@@ -3,23 +3,20 @@
 <html>
 <head>
 <title>eShop</title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+<script src="script.js"></script>
 </head>
 <body>
-    <div class="container">
-<header class="header">
-    <h1 class="title">eShop</h1>
-
-    <div class="search">
-       <input type="text " class="goods-search" />
-       <button class="search-button cart-button2" type="button">Искать</button>
-    </div>
-<button class="cart-button" type="button">Корзина</button>
-</header>
-<main>
-<div class="goods-list">
+  
+<div id="root">
+   <h1>{{message}}</h1> 
+    {{getMessage}}
+    <h2 v-if="isShow">Visible</h2>
+    <h2 v-else="isShow">Visible else</h2>
+    <div v-for="item in items">
+        <h3>{{item.name}}</h3>
+        </div>
+        <button v-on:click="myFu">кликай уже</button>
 </div>
-</main>
-</div>
-<script src="script.js"></script>
 </body>
 </html>
