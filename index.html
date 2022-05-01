@@ -7,16 +7,26 @@
 <script src="script.js"></script>
 </head>
 <body>
-  
-<div id="root">
-   <h1>{{message}}</h1> 
-    {{getMessage}}
-    <h2 v-if="isShow">Visible</h2>
-    <h2 v-else="isShow">Visible else</h2>
-    <div v-for="item in items">
-        <h3>{{item.name}}</h3>
-        </div>
-        <button v-on:click="myFu">кликай уже</button>
+    <div id="root">
+    <div class="container">
+<header class="header">
+    <h1 class="title">eShop</h1>
+    <div class="search">
+       <input type="text " class="goods-search" v-model="search"/>
+       <button class="search-button cart-button2" type="button" v-on:click="filterItems">Искать</button>
+    </div>
+<button class="cart-button" type="button">Корзина</button>
+</header>
+<main>
+<div class="goods-list">
+    <div class="goods-item" v-for ="item in filteredItems">
+          <h3 class="goods-heading">{{item.product_name}}</h3>
+            <p>{{item.price}}</p>
+            </div>
+</div>
+<div>{{calculatePrice}}</div>
+</main>
+
 </div>
 </body>
 </html>
