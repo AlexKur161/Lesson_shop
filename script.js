@@ -88,7 +88,7 @@ function init(){
       items:[],
       filteredItems: [],
       search:'',
-      basketShow: true
+      isVisibleCart: false
     },
     methods:{
       fetchGoods() {
@@ -102,6 +102,9 @@ function init(){
               return product_name.match(new RegExp(this.search, 'gui'))
             })
           },
+          setVisionCart(){
+            this.isVisibleCart = !this.isVisibleCart
+          }
   },
   computed:{
     calculatePrice() {

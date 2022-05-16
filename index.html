@@ -15,7 +15,7 @@
        <input type="text " class="goods-search" v-model="search"/>
        <button class="search-button cart-button2" type="button" v-on:click="filterItems">Искать</button>
     </div>
-<button class="cart-button" type="button">Корзина</button>
+<button v-on:click="setVisionCart()" class="cart-button" type="button">Корзина</button>
 </header>
 <main>
 <div class="goods-list">
@@ -25,11 +25,11 @@
             </div>
 </div>
 <div>{{calculatePrice}}</div>
-<div class="fixed-area" v-if="basketShow">
+<div class="fixed-area" v-if="isVisibleCart">
     <div class="basket-card">
         <div class="basket-card-header">
             <h1 class="title-basket-card">Корзина</h1>
-            <div class="close-basket-card"></div>
+            <div v-on:click="setVisionCart()" class="close-basket-card"></div>
         </div>
     </div>
 </div>
