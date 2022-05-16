@@ -87,7 +87,8 @@ function init(){
     data:{
       items:[],
       filteredItems: [],
-      search:''
+      search:'',
+      basketShow: true
     },
     methods:{
       fetchGoods() {
