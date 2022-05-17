@@ -8,6 +8,43 @@ function service(url) {
   
 }
 function init(){
+  const customButton = Vue.component('custom-button',{
+    template:`
+    <button class="search-button cart-button2" type="button" v-on:click="$emit('filteritems')">
+    <slot></slot>
+    </button>
+    `
+  })
+  const basketGoods = Vue.component('basket-goods',{
+    props:[
+      'isvisiblecart',
+      'calculateprice'
+    ],
+    template:`
+    <div  class="fixed-area" v-if="isvisiblecart">
+    <div class="basket-card">
+        <div class="basket-card-header">
+            <h1 class="title-basket-card">Корзина</h1>
+            <div>{{calculateprice}}</div>
+            <div class="close-basket-card" v-on:click="$emit('closecart')"></div>
+        </div>
+    </div>
+</div>
+    `
+  })
+  const goodsItem = Vue.component('goods-item',{
+    props:[
+      'item'
+    ],
+    template:`
+    <div class="goods-list">
+    <div class="goods-item">
+          <h3 class="goods-heading">{{item.product_name}}</h3>
+            <p>{{item.price}}</p>
+            </div>
+  </div>
+    `
+  })
   const compAp = Vue.component('component-a',{
     props:[
       'title'
@@ -18,9 +55,13 @@ function init(){
    <component-b> </component-b>
    <component-b> </component-b>
    <component-b> </component-b>
+   <slot>
+   что либо
+   </slot>
     </div>
     `
   })
+  
   const compB = Vue.component('component-b',{
     template:`
     <div>component-b</div>

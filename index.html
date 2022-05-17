@@ -13,35 +13,27 @@
     <h1 class="title">eShop</h1>
     <div class="search">
        <input type="text " class="goods-search" v-model="search"/>
-       <button class="search-button cart-button2" type="button" v-on:click="filterItems">Искать</button>
+      <custom-button v-on:filteritems="filterItems">Искать</custom-button>
     </div>
-<button v-on:click="setVisionCart()" class="cart-button" type="button">Корзина</button>
+<custom-button v-on:filteritems="setVisionCart">Корзина</custom-button>
 </header>
 <main>
     <component-a
      title="titlea1"
      v-on:my-event="testEvents"
-     ></component-a>
+     >
+    описание компонента
+    </component-a>
      <component-a
      title="titlea2"
      v-on:my-event="testEvents"
-     ></component-a>
+     >
+    
+    </component-a>
 <div class="goods-list">
-    <div class="goods-item" v-for ="item in filteredItems">
-          <h3 class="goods-heading">{{item.product_name}}</h3>
-            <p>{{item.price}}</p>
-            </div>
+    <goods-item v-for ="item in filteredItems" :item="item"> </goods-item>
 </div>
-
-<div class="fixed-area" v-if="isVisibleCart">
-    <div class="basket-card">
-        <div class="basket-card-header">
-            <h1 class="title-basket-card">Корзина</h1>
-            <div>{{calculatePrice}}</div>
-            <div v-on:click="setVisionCart()" class="close-basket-card"></div>
-        </div>
-    </div>
-</div>
+<basket-goods :isvisiblecart="isVisibleCart" :calculateprice="calculatePrice" v-on:closecart="setVisionCart"></basket-goods>
 </main>
 
 </div>
