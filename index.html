@@ -18,18 +18,6 @@
 <custom-button v-on:filteritems="setVisionCart">Корзина</custom-button>
 </header>
 <main>
-    <component-a
-     title="titlea1"
-     v-on:my-event="testEvents"
-     >
-    описание компонента
-    </component-a>
-     <component-a
-     title="titlea2"
-     v-on:my-event="testEvents"
-     >
-    
-    </component-a>
 <div class="goods-list">
     <goods-item v-for ="item in filteredItems" :item="item"> </goods-item>
 </div>
