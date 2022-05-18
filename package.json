@@ -1,0 +1,22 @@
+{
+  "name": "lesson_shop",
+  "version": "1.0.0",
+  "description": "Магазин",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexKur161/lesson_shop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexKur161/lesson_shop/issues"
+  },
+  "homepage": "https://github.com/AlexKur161/lesson_shop#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
