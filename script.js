@@ -8,6 +8,14 @@ function service(url) {
   
 }
 function init(){
+  const inpSearch = Vue.component('input-search',{
+    props:[
+      'newsearch'
+    ],
+    template:`
+    <input type="text " class="goods-search" v-model="newsearch"/>
+    `
+  })
   const customButton = Vue.component('custom-button',{
     template:`
     <button class="search-button cart-button2" type="button" v-on:click="$emit('filteritems')">
