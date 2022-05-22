@@ -1,114 +1,96 @@
-import{writeFile,readFile} from 'fs/promises'
-import express from 'express'
+import { writeFile, readFile } from 'fs/promises'
+import express from 'express';
+import cors from 'cors';
 
-const BASE_URL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/';
-const GET_GOODS_ITEMS = `${BASE_URL}catalogData.json`
-const GET_BASKET_GOODS_ITEMS = `${BASE_URL}getBasket.json`
+const FILE_PATH = './file.txt'
+const JSON_PATH = './object.json'
 
-function service(url) {
- return fetch(url)
-  .then((res) => res.json())
-  
+/* ToDo Запись в файл */
+const writeFileTemplate = () => {
+  const text = 'Hello world!'
+  fsPromises.writeFile(FILE_PATH, text)
+  .then((res) => {
+    console.log('Write done \n', res)
+  })
+  .catch((err) => {
+    console.log('Write error \n', err)
+  })
 }
-function init(){
-  const customButton = Vue.component('custom-button',{
-    template:`
-    <button class="search-button cart-button2" type="button" v-on:click="$emit('filteritems')">
-    <slot></slot>
-    </button>
-    `
+
+// writeTemplate();
+
+/* ToDo Чтение из файла */
+const readFileTemplate = () => {
+  readFile(FILE_PATH, 'utf-8')
+  .then((file) => {
+    console.log('Read done \n', file)
   })
-  const basketGoods = Vue.component('basket-goods',{
-    props:[
-      'isvisiblecart',
-      'calculateprice'
-    ],
-    template:`
-    <div  class="fixed-area" v-if="isvisiblecart">
-    <div class="basket-card">
-        <div class="basket-card-header">
-            <h1 class="title-basket-card">Корзина</h1>
-            <div>{{calculateprice}}</div>
-            <div class="close-basket-card" v-on:click="$emit('closecart')"></div>
-        </div>
-    </div>
-</div>
-    `
+  .catch((err) => {
+    console.log('Read error \n', err)
   })
-  const goodsItem = Vue.component('goods-item',{
-    props:[
-      'item'
-    ],
-    template:`
-    <div class="goods-list">
-    <div class="goods-item">
-          <h3 class="goods-heading">{{item.product_name}}</h3>
-            <p>{{item.price}}</p>
-            </div>
-  </div>
-    `
+}
+// readFileTemplate();
+
+/* ToDo Работа с json */
+const jsonWorkTemplate = () => {
+  readFile(JSON_PATH, 'utf-8')
+  .then((file) => {
+    return JSON.parse(file)
   })
-  const compAp = Vue.component('component-a',{
-    props:[
-      'title'
-    ],
-    template:`
-    <div>
-    <h1 v-on:click="$emit('my-event',title)">{{ title }}</h1>
-   <component-b> </component-b>
-   <component-b> </component-b>
-   <component-b> </component-b>
-   <slot>
-   что либо
-   </slot>
-    </div>
-    `
+  .then((object) => {
+    console.log('object \n', object);
+    return object
   })
-  
-  const compB = Vue.component('component-b',{
-    template:`
-    <div>component-b</div>
-    `
-  })
-  const app = new Vue({
-    el: '#root',
-    data:{
-      items:[],
-      filteredItems: [],
-      search:'',
-      isVisibleCart: false,
-      titlea: 'test test test'
-    },
-    methods:{
-      testEvents(event){
-        alert(event)
-        
-      },
-      fetchGoods() {
-           service(GET_GOODS_ITEMS).then((data) => {
-             this.items = data;
-              this.filteredItems = data;
-            });
-          }, 
-          filterItems() {
-            this.filteredItems = this.items.filter(({ product_name }) => {
-              return product_name.match(new RegExp(this.search, 'gui'))
-            })
-          },
-          setVisionCart(){
-            this.isVisibleCart = !this.isVisibleCart
-          }
-  },
-  computed:{
-    calculatePrice() {
-        return this.items.reduce((prev, { price }) => {
-          return prev + price;
-        }, 0)
-      }
-},
-    mounted(){
-      this.fetchGoods();
+  .then((object) => {
+    const resultObject = {
+      ...object,
+      type: 'User'
     }
+    return writeFile(JSON_PATH, JSON.stringify(resultObject))
+  })
+  .then((e) => {
+    console.log('json work done \n', e);
+  })
+  .catch((err) => {
+    console.log('json work error \n', err);
   })
 }
-window.onload = init
+
+// jsonWorkTemplate();
+
+
+/* ToDo Создание сервера на express */
+const serverTemplate = () => {
+  const app = express();
+  
+  app.use(express.static('public'))
+  app.use(cors());
+  
+  app.get('/', (res, req) => {
+    req.send('hello world!');
+  });
+  
+  app.listen('8000', () => {
+    console.log('server is starting!')
+  })
+}
+// serverTemplate();
+
+
+/* ToDo Обработка POST запросов */
+const postResponseTemplate = () => {
+  const app = express();
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+  app.use(cors());
+  
+  app.post('/', (req, res) => {
+    console.log('request body - \n', req.body);
+    res.send(`hello ${req.body.name}`);
+  });
+  
+  app.listen('8000', () => {
+    console.log('server is starting!');
+  });
+}
+postResponseTemplate()

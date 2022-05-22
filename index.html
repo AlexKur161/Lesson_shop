@@ -1,29 +1,10 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="main.css">
-<html>
+<html lang="en">
 <head>
-<title>eShop</title>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
-<script src="script.js"></script>
+   <meta charset="UTF-8">
+   <title>public page</title>
 </head>
 <body>
-    <div id="root">
-    <div class="container">
-<header class="header">
-    <h1 class="title">eShop</h1>
-    <div class="search">
-       <input type="text " class="goods-search" v-model="search"/>
-      <custom-button v-on:filteritems="filterItems">Искать</custom-button>
-    </div>
-<custom-button v-on:filteritems="setVisionCart">Корзина</custom-button>
-</header>
-<main>
-<div class="goods-list">
-    <goods-item v-for ="item in filteredItems" :item="item"> </goods-item>
-</div>
-<basket-goods :isvisiblecart="isVisibleCart" :calculateprice="calculatePrice" v-on:closecart="setVisionCart"></basket-goods>
-</main>
-
-</div>
+   <h1>Is public page</h1>
 </body>
 </html>
