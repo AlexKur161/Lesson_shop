@@ -13,10 +13,13 @@
     <h1 class="title">eShop</h1>
     <div class="search">
        <input type="text " class="goods-search" v-model="search"/>
-       <!-- <input-search v-model:newsearch="search"></input-search> -->
-      
       <custom-button v-on:filteritems="filterItems">Искать</custom-button>
     </div>
+    <!-- <search
+     :value="search" 
+    @input="searchChengeHandler"
+    v-on:searchclick="filterItems"
+    ></search> -->
 <custom-button v-on:filteritems="setVisionCart">Корзина</custom-button>
 </header>
 <main>

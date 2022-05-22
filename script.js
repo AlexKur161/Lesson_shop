@@ -8,14 +8,17 @@ function service(url) {
   
 }
 function init(){
-  const inpSearch = Vue.component('input-search',{
-    props:[
-      'newsearch'
-    ],
-    template:`
-    <input type="text " class="goods-search" v-model="newsearch"/>
-    `
-  })
+ const Search= Vue.component('search', {
+   props:[
+     'value'
+   ],
+   template:`
+   <div class="search">
+       <input type="text" class="goods-search" :value="value" @input="$emit('input', $event.target.value)"/>
+      <custom-button v-on:click="$emit('searchclick')">Искать</custom-button>
+    </div>
+   `
+ })
   const customButton = Vue.component('custom-button',{
     template:`
     <button class="search-button cart-button2" type="button" v-on:click="$emit('filteritems')">
@@ -98,10 +101,16 @@ function init(){
           filterItems() {
             this.filteredItems = this.items.filter(({ product_name }) => {
               return product_name.match(new RegExp(this.search, 'gui'))
+              debugger
             })
           },
           setVisionCart(){
             this.isVisibleCart = !this.isVisibleCart
+            
+          },
+          searchChengeHandler(value){
+            this.search = value
+           
           }
   },
   computed:{
